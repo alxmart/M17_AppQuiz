@@ -1,5 +1,6 @@
 package com.luizafmartinez.m17_appquiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -33,11 +34,22 @@ class MainActivity : AppCompatActivity() {
     private fun validarCampos() {
 
         val nome = editNome.text.toString()
+
         if ( nome.isNotEmpty() ) {
             textInputLayoutNome.error = null
         } else {
             textInputLayoutNome.error = "Preencha seu nome para prosseguir."
         }
+
+        // Enviar o usuário para a tela de perguntas
+        val intent = Intent(
+            this,
+            PerguntasActivity::class.java
+        )
+
+        intent.putExtra("nome", nome)
+
+        startActivity(intent)
     }
 
     private fun inicializarComponentesInterface() {

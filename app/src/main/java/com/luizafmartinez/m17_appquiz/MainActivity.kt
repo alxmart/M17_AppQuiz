@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editNome: TextInputEditText
     private lateinit var btnIniciar: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val nome = editNome.text.toString()
 
-        if ( nome.isNotEmpty() ) {
+        if (nome.isNotEmpty()) {
             textInputLayoutNome.error = null
         } else {
             textInputLayoutNome.error = "Preencha seu nome para prosseguir."
@@ -58,4 +57,5 @@ class MainActivity : AppCompatActivity() {
         editNome = findViewById(R.id.edit_nome)
         btnIniciar = findViewById(R.id.btn_iniciar)
     }
+
 }

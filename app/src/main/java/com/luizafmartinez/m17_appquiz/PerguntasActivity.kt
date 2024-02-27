@@ -22,29 +22,40 @@ class PerguntasActivity : AppCompatActivity() {
     private lateinit var perguntaAtual: Pergunta
     private var indicePerguntaAtual = 0
 
+    // Totalizadores
+    private var totalPerguntas = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perguntas)
-
         inicializarComponentesInterface()
 
+        // pergunta1, pergunta2, pergunta3
         listaPerguntas = DadosPerguntas.retornarListaPerguntas()
-
         exibirDadosPerguntaAtual()
 
-        //Exibir os dados
-        textTitulo.text = perguntaAtual.titulo
-        radioResposta1.text = perguntaAtual.resposta1
-        radioResposta2.text = perguntaAtual.resposta2
-        radioResposta3.text = perguntaAtual.resposta3
+        btnConfirmar.setOnClickListener {
+            indicePerguntaAtual++
+            exibirDadosPerguntaAtual()
+        }
 
     }
+
 
     private fun exibirDadosPerguntaAtual() {
 
         perguntaAtual = listaPerguntas[ indicePerguntaAtual ]
 
-        // Exibir os dados
+        //Exibir os dados
+        totalPerguntas = listaPerguntas.size
+        val textoResumo = "${ indicePerguntaAtual + 1 } pergunta de $totalPerguntas"
+
+        textExibicaoResumo.text = textoResumo
+        textTitulo.text = perguntaAtual.titulo
+        radioResposta1.text = perguntaAtual.resposta1
+        radioResposta2.text = perguntaAtual.resposta2
+        radioResposta3.text = perguntaAtual.resposta3
+
 
     }
 

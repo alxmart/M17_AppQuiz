@@ -46,24 +46,21 @@ class PerguntasActivity : AppCompatActivity() {
 
         // Exibir os dados
 
-
     }
-
 
     override fun onStart() {
         super.onStart()
     }
 
-
     private fun inicializarComponentesInterface() {
 
-        textExibicaoNome = findViewById(R.id.text_exibicao_nome)
+        textExibicaoNome   = findViewById(R.id.text_exibicao_nome)
         textExibicaoResumo = findViewById(R.id.text_exibicao_resumo)
-        textTitulo = findViewById(R.id.text_titulo)
-
-        radioResposta1 = findViewById(R.id.radio_resposta1)
-        radioResposta2 = findViewById(R.id.radio_resposta2)
-        radioResposta3 = findViewById(R.id.radio_resposta3)
+        textTitulo         = findViewById(R.id.text_titulo)
+        radioResposta1     = findViewById(R.id.radio_resposta1)
+        radioResposta2     = findViewById(R.id.radio_resposta2)
+        radioResposta3     = findViewById(R.id.radio_resposta3)
+        btnConfirmar       = findViewById(R.id.btn_confirmar)
 
         val bundle = intent.extras
 

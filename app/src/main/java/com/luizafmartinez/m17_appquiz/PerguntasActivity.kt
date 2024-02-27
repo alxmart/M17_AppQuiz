@@ -35,12 +35,18 @@ class PerguntasActivity : AppCompatActivity() {
         exibirDadosPerguntaAtual()
 
         btnConfirmar.setOnClickListener {
+
             indicePerguntaAtual++
-            exibirDadosPerguntaAtual()
+
+            if ( indicePerguntaAtual < totalPerguntas) {
+                exibirDadosPerguntaAtual()
+            }  else {
+                // Questionário finalizado
+            }
+
         }
 
     }
-
 
     private fun exibirDadosPerguntaAtual() {
 

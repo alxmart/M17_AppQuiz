@@ -43,13 +43,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_nome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:hint="Digite seu nome">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Digite seu nome" />
+                android:hint="John Doe"
+                android:text="John Doe" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -28,6 +28,7 @@ class PerguntasActivity : AppCompatActivity() {
 
     // Totalizadores
     private var totalPerguntas = 0
+    private var totalRespostasCorretas = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,9 @@ class PerguntasActivity : AppCompatActivity() {
 
             if (validarResposta()) {
 
+
                 indicePerguntaAtual++
+                // 0,1,2 -> 3
 
                 if (indicePerguntaAtual < totalPerguntas) {
                     exibirDadosPerguntaAtual()

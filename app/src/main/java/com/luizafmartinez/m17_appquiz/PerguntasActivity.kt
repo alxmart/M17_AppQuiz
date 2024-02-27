@@ -3,6 +3,7 @@ package com.luizafmartinez.m17_appquiz
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.core.os.bundleOf
 
 class PerguntasActivity : AppCompatActivity() {
 
@@ -19,5 +20,26 @@ class PerguntasActivity : AppCompatActivity() {
 
         textExibicaoNome = findViewById(R.id.text_exibicao_nome)
 
+        val bundle = intent.extras
+
+        val nome = bundle?.getString("nome")
+
+        if ( nome != null) {
+            textExibicaoNome.text = "Olá, $nome"
+        }
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

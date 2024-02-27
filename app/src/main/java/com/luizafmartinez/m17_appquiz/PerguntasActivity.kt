@@ -1,10 +1,13 @@
 package com.luizafmartinez.m17_appquiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 
 class PerguntasActivity : AppCompatActivity() {
@@ -16,6 +19,7 @@ class PerguntasActivity : AppCompatActivity() {
     private lateinit var radioResposta1: RadioButton
     private lateinit var radioResposta2: RadioButton
     private lateinit var radioResposta3: RadioButton
+    private lateinit var radioGroup: RadioGroup
     private lateinit var btnConfirmar: Button
 
     private lateinit var listaPerguntas: List<Pergunta>
@@ -36,25 +40,58 @@ class PerguntasActivity : AppCompatActivity() {
 
         btnConfirmar.setOnClickListener {
 
-            indicePerguntaAtual++
+            if (validarResposta()) {
 
-            if ( indicePerguntaAtual < totalPerguntas) {
-                exibirDadosPerguntaAtual()
-            }  else {
-                // Questionário finalizado
+                indicePerguntaAtual++
+
+                if (indicePerguntaAtual < totalPerguntas) {
+                    exibirDadosPerguntaAtual()
+
+                } else {// Questionário finalizado
+                   val intent = Intent(this,
+                       ResultadoActivity::class.java
+                   )
+                    startActivity(intent)
+                }
+
+            } else {
+                Toast.makeText(this,
+                    "Preencha ao menos uma resposta",
+                    Toast.LENGTH_SHORT).show()
             }
-
         }
 
     }
 
+    private fun validarResposta(): Boolean {
+
+        /*  val idRadioButtonSelecionado = radioGroup.checkedRadioButtonId
+
+          return when ( idRadioButtonSelecionado ) {
+              R.id.radio_resposta1  ->
+              R.id.radio_resposta2  ->
+              R.id.radio_resposta3  ->
+                  else -> true
+          }*/
+
+        if (radioResposta1.isChecked ||
+            radioResposta2.isChecked ||
+            radioResposta3.isChecked )
+        {
+            return true
+        } else {
+            return false
+        }
+    }
+
+
     private fun exibirDadosPerguntaAtual() {
 
-        perguntaAtual = listaPerguntas[ indicePerguntaAtual ]
+        perguntaAtual = listaPerguntas[indicePerguntaAtual]
 
         //Exibir os dados
         totalPerguntas = listaPerguntas.size
-        val textoResumo = "${ indicePerguntaAtual + 1 } pergunta de $totalPerguntas"
+        val textoResumo = "${indicePerguntaAtual + 1} pergunta de $totalPerguntas"
 
         textExibicaoResumo.text = textoResumo
         textTitulo.text = perguntaAtual.titulo
@@ -62,6 +99,7 @@ class PerguntasActivity : AppCompatActivity() {
         radioResposta2.text = perguntaAtual.resposta2
         radioResposta3.text = perguntaAtual.resposta3
 
+        radioGroup.clearCheck()
 
     }
 
@@ -71,24 +109,25 @@ class PerguntasActivity : AppCompatActivity() {
 
     private fun inicializarComponentesInterface() {
 
-        textExibicaoNome   = findViewById(R.id.text_exibicao_nome)
+        textExibicaoNome = findViewById(R.id.text_exibicao_nome)
         textExibicaoResumo = findViewById(R.id.text_exibicao_resumo)
-        textTitulo         = findViewById(R.id.text_titulo)
-        radioResposta1     = findViewById(R.id.radio_resposta1)
-        radioResposta2     = findViewById(R.id.radio_resposta2)
-        radioResposta3     = findViewById(R.id.radio_resposta3)
-        btnConfirmar       = findViewById(R.id.btn_confirmar)
+        textTitulo = findViewById(R.id.text_titulo)
+        radioResposta1 = findViewById(R.id.radio_resposta1)
+        radioResposta2 = findViewById(R.id.radio_resposta2)
+        radioResposta3 = findViewById(R.id.radio_resposta3)
+        radioGroup = findViewById(R.id.radio_group)
+        btnConfirmar = findViewById(R.id.btn_confirmar)
 
         val bundle = intent.extras
 
         val nome = bundle?.getString("nome")
 
-        if ( nome != null) {
+        if (nome != null) {
             textExibicaoNome.text = "Olá, $nome"
         }
-
     }
 }
+
 
 
 

@@ -27,7 +27,7 @@
             android:text="Olá, nome" />
 
         <TextView
-            android:id="@+id/textExibicaoResumo"
+            android:id="@+id/text_exibicao_resumo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -53,19 +53,19 @@
             android:padding="8dp">
 
             <RadioButton
-                android:id="@+id/radioResposta1"
+                android:id="@+id/radio_resposta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Resposta 1" />
 
             <RadioButton
-                android:id="@+id/radioResposta2"
+                android:id="@+id/radio_resposta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Resposta 2" />
 
             <RadioButton
-                android:id="@+id/radioResposta3"
+                android:id="@+id/radio_resposta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Resposta 3" />
@@ -73,7 +73,7 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/btnConfirmar"
+            android:id="@+id/btn_confirmar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Confirmar resposta" />

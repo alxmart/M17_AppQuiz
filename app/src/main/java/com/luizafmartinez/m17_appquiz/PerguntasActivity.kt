@@ -49,9 +49,13 @@ class PerguntasActivity : AppCompatActivity() {
                 if (indicePerguntaAtual < totalPerguntas) {
                     exibirDadosPerguntaAtual()
                 } else {// Questionário finalizado
-                   val intent = Intent(this,
+                   val intent = Intent(
+                       this,
                        ResultadoActivity::class.java
                    )
+                    intent.putExtra("totalRespostasCorretas",totalRespostasCorretas)
+                    intent.putExtra("totalPerguntas",totalPerguntas)
+
                     startActivity(intent)
                 }
             } else {
@@ -74,7 +78,9 @@ class PerguntasActivity : AppCompatActivity() {
             else -> 0
         }
         if ( perguntaCerta == respostaSelecionada ) {
+
             totalRespostasCorretas++
+
             Toast.makeText(
                 this,
                 "Resposta Correta",
@@ -91,7 +97,6 @@ class PerguntasActivity : AppCompatActivity() {
     }
 
     private fun validarResposta(): Boolean {
-
         /*  val idRadioButtonSelecionado = radioGroup.checkedRadioButtonId
 
           return when ( idRadioButtonSelecionado ) {
@@ -100,7 +105,6 @@ class PerguntasActivity : AppCompatActivity() {
               R.id.radio_resposta3  ->
                   else -> true
           }*/
-
         if (radioResposta1.isChecked ||
             radioResposta2.isChecked ||
             radioResposta3.isChecked )
@@ -111,23 +115,22 @@ class PerguntasActivity : AppCompatActivity() {
         }
     }
 
-
     private fun exibirDadosPerguntaAtual() {
 
         perguntaAtual = listaPerguntas[indicePerguntaAtual]
-
         //Exibir os dados
         totalPerguntas = listaPerguntas.size
+
         val textoResumo = "${indicePerguntaAtual + 1} pergunta de $totalPerguntas"
 
         textExibicaoResumo.text = textoResumo
         textTitulo.text = perguntaAtual.titulo
+
         radioResposta1.text = perguntaAtual.resposta1
         radioResposta2.text = perguntaAtual.resposta2
         radioResposta3.text = perguntaAtual.resposta3
 
         radioGroup.clearCheck()
-
     }
 
     override fun onStart() {
@@ -154,17 +157,3 @@ class PerguntasActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

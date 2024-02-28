@@ -43,25 +43,49 @@ class PerguntasActivity : AppCompatActivity() {
 
             if (validarResposta()) {
 
-
+                exibirResultadoResposta()
                 indicePerguntaAtual++
                 // 0,1,2 -> 3
-
                 if (indicePerguntaAtual < totalPerguntas) {
                     exibirDadosPerguntaAtual()
-
                 } else {// Questionário finalizado
                    val intent = Intent(this,
                        ResultadoActivity::class.java
                    )
                     startActivity(intent)
                 }
-
             } else {
                 Toast.makeText(this,
                     "Preencha ao menos uma resposta",
                     Toast.LENGTH_SHORT).show()
             }
+        }
+
+    }
+
+    private fun exibirResultadoResposta() {
+
+        val perguntaCerta = perguntaAtual.respostaCerta
+
+        val respostaSelecionada = when {
+            radioResposta1.isChecked -> 1
+            radioResposta2.isChecked -> 2
+            radioResposta3.isChecked -> 3
+            else -> 0
+        }
+        if ( perguntaCerta == respostaSelecionada ) {
+            totalRespostasCorretas++
+            Toast.makeText(
+                this,
+                "Resposta Correta",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                this,
+                "Resposta errada",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
